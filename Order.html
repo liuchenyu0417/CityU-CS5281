@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <link rel="stylesheet" type="text/css" href="Background.css">
+    <style>
+        .left-column,
+        .center-column,
+        .right-column {
+            display: inline-block;
+            vertical-align: top;
+            width: calc(33% - 20px);
+            margin-right: 20px;
+        }
+
+        .left-column h2,
+        .center-column h2,
+        .right-column h2 {
+            text-align: center;
+        }
+
+        .rec {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 75px;
+            background-color: white;
+            border: 1px solid black;
+            transition: border-color 0.3s;
+            margin-bottom: 50px;
+
+        }
+
+        .rec:last-child {
+            margin-right: 0;
+        }
+
+        .rec:hover {
+            border-color: dodgerblue;
+        }
+
+        .payButton {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 60px;
+            background-color: lightcoral;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .payButtonText {
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="headBar">
+        <img src="./img/图片3.png" width="200px" alt="logo">
+        <img src="./img/location.png" width="25px"  alt="university">
+        <label for="universitySelect"></label>
+        <select name="universitySelect" id="universitySelect">
+            <option value="default" selected>University</option>
+            <option value="HKU">HKU</option>
+            <option value="CUHK">CUHK</option>
+            <option value="HKUST">HKUST</option>
+            <option value="CITYU">CITYU</option>
+            <option value="POLYU">POLYU</option>
+            <option value="LU">LU</option>
+            <option value="HKBU">HKBU</option>
+            <option value="EDUHK">EDUHK</option>
+        </select>
+        <img src="./img/canteen.png" width="25px" alt="canteen">
+        <label for="canteenSelect"></label>
+        <select id="canteenSelect">
+            <option value="">Choose your university first.</option>
+        </select>
+        <script>
+            // 定义学校和对应餐馆的数据
+            const universityCanteens = {
+                'HKU': ['餐馆A', '餐馆B', '餐馆C'],
+                'CUHK': ['餐馆X', '餐馆Y', '餐馆Z'],
+                'HKUST': ['餐馆M', '餐馆N', '餐馆O'],
+                'CITYU': ['AC1', 'AC2', 'AC3'],
+                'POLYU': ['餐馆P', '餐馆Q', '餐馆R'],
+                'LU': ['餐馆L', '餐馆U', '餐馆V'],
+                'HKBU': ['餐馆H', '餐馆B', '餐馆U'],
+                'EDUHK': ['餐馆E', '餐馆D', '餐馆U']
+                // 其他学校及其餐馆
+            };
+
+            // 获取选择框元素
+            const universitySelect = document.getElementById('universitySelect');
+            const canteenSelect = document.getElementById('canteenSelect');
+
+            // 监听学校选择框的变化事件
+            universitySelect.addEventListener('change', function() {
+                // 获取选中的学校值
+                const selectedUniversity = this.value;
+
+                // 清空餐馆选择框
+                canteenSelect.innerHTML = '<option value="">Select the canteens</option>';
+
+                // 如果没有选中学校,直接返回
+                if (!selectedUniversity) {
+                    return;
+                }
+
+                // 获取选中学校对应的餐馆列表
+                const canteens = universityCanteens[selectedUniversity];
+
+                // 为餐馆选择框添加选项
+                for (const canteen of canteens) {
+                    const option = document.createElement('option');
+                    option.value = canteen;
+                    option.text = canteen;
+                    canteenSelect.add(option);
+                }
+            });
+        </script>
+    </div>
+
+
+    <div class="body">
+        <h1>CHECKING YOUR ORDER</h1>
+        <div class="left-column">
+            <h2>ORDER DETAILS</h2>
+            <img src="./img/location_2.png" width="25" alt="canteen">Dine-in/Takeaway:
+            <span id="orderDetails"></span>
+            <script>
+                // 获取订单详情元素
+                const orderDetails = document.getElementById('orderDetails');
+
+                // 监听大学和餐厅选择框的变化事件
+                universitySelect.addEventListener('change', updateOrderDetails);
+                canteenSelect.addEventListener('change', updateOrderDetails);
+
+                // 更新订单详情函数
+                function updateOrderDetails() {
+                    // 获取选中的大学和餐厅
+                    const selectedUniversity = universitySelect.value;
+                    const selectedCanteen = canteenSelect.value;
+
+                    // 如果没有选择大学或餐厅，则不显示订单详情
+                    if (!selectedUniversity || !selectedCanteen) {
+                        orderDetails.textContent = '';
+                        return;
+                    }
+
+                    // 构建订单详情文本
+                    // 在订单详情元素中显示文本
+                    orderDetails.textContent = `${selectedUniversity}  ${selectedCanteen}`;
+                }
+            </script>
+            <br /><br />
+            <img src="./img/time.png" width="25" alt="time">
+            <label for="timeSelect">Time:</label>
+            <select id="timeSelect">
+                <option value="">Choose a time</option>
+            </select>
+            <script>
+                // 获取时间选择框元素
+                const timeSelect = document.getElementById('timeSelect');
+
+                // 监听大学和餐厅选择框的变化事件
+                universitySelect.addEventListener('change', updateTimeOptions);
+                canteenSelect.addEventListener('change', updateTimeOptions);
+
+                // 更新时间选项函数
+                function updateTimeOptions() {
+                    // 获取选中的大学和餐厅
+                    const selectedUniversity = universitySelect.value;
+                    const selectedCanteen = canteenSelect.value;
+
+                    // 清空时间选择框
+                    timeSelect.innerHTML = '<option value="">Choose a time</option>';
+
+                    // 如果没有选择大学或餐厅，则不显示时间选项
+                    if (!selectedUniversity || !selectedCanteen) {
+                        return;
+                    }
+
+                    // 获取当前时间
+                    const currentHour = new Date().getHours();
+
+                    // 添加时间选项
+                    for (let hour = currentHour; hour <= 23; hour++) {
+                        for (let minute = 0; minute <= 30; minute += 30) {
+                            const option = document.createElement('option');
+                            option.value = `${hour}:${minute === 0 ? '00' : '30'}`;
+                            option.text = `${hour}:${minute === 0 ? '00' : '30'}`;
+                            timeSelect.add(option);
+                        }
+                    }
+                }
+            </script>
+        </div>
+
+        <div class="center-column">
+            <h2>PAYMENT METHOD</h2>
+            <div class="rec">
+                <input type="radio" name="payment" id="Alipay" value="Alipay">
+                <label for="Alipay">
+                    <img src="./img/支付宝.png" height="50" alt="Alipay">
+                </label>
+            </div>
+            <div class="rec">
+                <input type="radio" name="payment" id="WeChatPay" value="WeChatPay">
+                <label for="WeChatPay">
+                    <img src="./img/微信支付.png" height="50" alt="WeChatPay">
+                </label>
+            </div>
+            <div class="rec">
+                <input type="radio" name="payment" id="Octopus" value="Octopus">
+                <label for="Octopus">
+                    <img src="./img/八达通.png" height="50" alt="Octopus">
+                </label>
+            </div>
+            <div class="payButton" onclick="buttonClicked()">
+                <span class="payButtonText">PAY</span>
+            </div>
+            <script>
+                function buttonClicked() {
+                    // 在这里编写按钮点击后的处理逻辑
+                    alert("按钮被点击了！");
+                }
+            </script>
+        </div>
+
+        <div class="right-column">
+            <h2>MY CART</h2>
+            <!-- 购物车内容 -->
+        </div>
+    </div>
+</body>
+</html>
