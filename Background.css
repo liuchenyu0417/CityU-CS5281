@@ -3,13 +3,90 @@ body {
 }
 
 .body {
-    margin: 30px;
+    /* 添加顶部边距,确保与 .container 间隔 20px */
+    margin: 90px 30px 30px;
     border-radius: 20px;
     background-color: whitesmoke;
     padding: 20px;
 }
 
+
 .headBar {
-    text-align-all: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 10px 0; /* 根据需要调整内边距 */
 }
 
+.selection,
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.selection {
+    width: 50%;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.logo {
+    width: calc(25% - 20px);
+    text-align: left;
+    margin-left: 10px;
+}
+
+.selection-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection-inner > * {
+    margin: 0 5px; /* 调整内部元素之间的间距 */
+}
+
+.description {
+    margin: 0 3px;
+}
+
+.account {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account button {
+    width: 80px; /* 设置按钮宽度 */
+    height: 30px; /* 设置按钮高度 */
+    border: none;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.account .register {
+    background-color: #fff;
+    color: #333;
+}
+
+.account .register:hover {
+    background-color: #eee; /* 悬停时背景颜色变浅 */
+    color: #000; /* 悬停时字体颜色变深 */
+}
+
+.account .login {
+    background-color: #333;
+    color: #fff;
+}
+
+.account .login:hover {
+    background-color: #555; /* 悬停时背景颜色变浅 */
+    color: #ddd; /* 悬停时字体颜色变浅 */
+}

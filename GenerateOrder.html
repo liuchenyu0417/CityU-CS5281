@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Order</title>
+    <link rel="stylesheet" type="text/css" href="Background.css">
+    <style>
+        .body {
+            overflow: auto; /* 清除浮动 */
+        }
+
+        .left-column {
+            width: calc(33% - 20px);
+            float: left;
+            height: 75vh; /* 设置高度为视口高度 */
+            box-sizing: border-box; /* 包含边框和padding在内的宽度计算 */
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            border: 2px solid pink;
+        }
+
+        .left-column h2 {
+            margin-top: 0;
+        }
+
+        .left-column hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 10px 0;
+        }
+
+        .cart-info {
+            background-color: white;
+            border-radius: 15px;
+            padding: 10px;
+            height: 200px;
+            overflow: auto;
+            border: 1px solid black;
+        }
+
+        .cart-total {
+            background-color: white;
+            border-radius: 15px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        .amount,
+        .total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .right-column {
+            width: 66.66%;
+            float: right;
+            height: 75vh; /* 设置高度为视口高度 */
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .top-section {
+            height: calc(50% - 10px);
+            box-sizing: border-box;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            border: 1px solid black;
+            margin-bottom: 20px;
+        }
+
+        .bottom-section {
+            height: calc(50% - 10px);
+            box-sizing: border-box;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            border: 1px solid black;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            margin: 0 20px;
+        }
+
+        .process-line {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+        }
+
+        .line {
+            width: 40px;
+            height: 2px;
+            background-color: black;
+            margin: 0 2px;
+        }
+
+        .centered-title {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="headBar">
+    <div class="logo"><img src="./img/图片3.png" width="200px" alt="logo"></div>
+    <div class="selection">
+        <img src="./img/location.png" width="30px"  alt="university">
+        <span class="description">University:</span>
+        <img src="./img/canteen.png" width="30px" alt="canteen">
+        <span class="description">Canteen:</span>
+    </div>
+    <div class="account">
+        <button class="register">Register</button>
+        <button class="login">Log in</button>
+    </div>
+</div>
+<div class="body">
+    <div class="left-column">
+        <h2>MY CART</h2>
+        <hr>
+        <div class="cart-info">
+            <!-- This area can receive information from other pages -->
+        </div>
+        <hr>
+        <div class="cart-total">
+            <div class="amount">
+                <span>Amount:</span>
+                <!-- Amount value will be inserted here -->
+            </div>
+            <hr>
+            <div class="total">
+                <span>Total:</span>
+                <!-- Total value will be inserted here -->
+            </div>
+        </div>
+    </div>
+    <div class="right-column">
+        <div class="top-section">
+            <p>Payment is successful, your order has been generated.</p>
+            <h4 class="centered-title">Pick-up Number</h4>
+            <!-- 需要随机生成 -->
+            <h1 class="centered-title">A14</h1>
+            <div class="image-container">
+                <img src="./img/菜单.png" width="50" alt="menu">
+                <div class="process-line">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <img src="./img/菜肴.png" width="50" alt="dish">
+                <div class="process-line">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <img src="./img/完成.png" width="50" alt="done">
+            </div>
+        </div>
+        <div class="bottom-section">
+            <h2>Order Details</h2>
+        </div>
+    </div>
+</div>
+</body>
+</html>
